@@ -1,0 +1,43 @@
+$mobile-width: 320px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+$color-radical-red: #ff4563;
+$color-medium-purple: #8245e6;
+$color-picton-blue: #4ac0e0;
+$color-azure-radiance: #1089eb;
+$color-east-side: #c791cd;
+
+.bg-radical-red {
+  background-color: $color-radical-red;
+}
+.bg-medium-purple {
+  background-color: $color-medium-purple;
+}
+.bg-picton-blue {
+  background-color: $color-picton-blue;
+}
+.bg-azure-radiance {
+  background-color: $color-azure-radiance;
+}
+.bg-east-side {
+  background-color: $color-east-side;
+}

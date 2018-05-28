@@ -6,14 +6,24 @@
   "main": "src/index.js",
   "dependencies": {
     "react": "16.3.2",
+    "react-canvas-knob": "^0.5.0",
     "react-dom": "16.3.2",
-    "react-scripts": "1.1.4"
+    "react-mediaquery-props": "^1.0.2",
+    "react-scripts": "1.1.4",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-sass-chokidar": "1.1.0",
+    "npm-run-all": "4.1.2"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm run build-css && npm run build-js"
   }
 }

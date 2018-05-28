@@ -1,0 +1,81 @@
+@mixin fontFace($family, $src, $style: normal, $weight: normal) {
+  @font-face {
+    font-family: $family;
+    src: url('#{$src}.eot'); // IE9 compat
+    src: url('#{$src}.eot?#iefix') format('embedded-opentype'), /* IE8 and below*/ url('#{$src}.woff') format('woff'),
+      /* standards*/ url('#{$src}.ttf') format('truetype'),
+      /* Safari, Android, iOS*/ url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
+
+    font-style: $style;
+    font-weight: $weight;
+  }
+}
+
+@include fontFace('Montserrat-Bold', './webfont/Montserrat-Bold/Montserrat-Bold');
+@include fontFace('Montserrat-Regular', './webfont/Montserrat-Regular/Montserrat-Regular');
+
+@mixin getIcon($src) {
+  &:before {
+    content: '';
+    display: flex;
+    width: inherit;
+    height: inherit;
+    background: url('#{$src}') no-repeat;
+    background-position: center;
+  }
+}
+$iconBase: '/assets/images/icons/';
+.chevron.right {
+  @include getIcon($iconBase + 'chevron-right.png');
+}
+.back-white {
+  @include getIcon($iconBase + 'back-wh.png');
+}
+.morning-white {
+  @include getIcon($iconBase + 'morning-wh.png');
+}
+
+.day-dark {
+  @include getIcon($iconBase + 'day-dk.png');
+}
+
+.night-dark {
+  @include getIcon($iconBase + 'night-dk.png');
+}
+
+.plus-dark {
+  @include getIcon($iconBase + 'plus-dk.png');
+}
+.tick-white {
+  @include getIcon($iconBase + 'tick-wh.png');
+}
+
+.tick-white-light {
+  @include getIcon($iconBase + 'tick-wh-lt.png');
+}
+
+.switch {
+  background: #000000;
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 60px;
+  width: 42px;
+  height: 24px;
+  position: relative;
+  &:before {
+    content: '';
+    background: #ffffff;
+    box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+  }
+  &.active {
+    &:before {
+      right: 7px;
+      left: unset;
+    }
+  }
+}
