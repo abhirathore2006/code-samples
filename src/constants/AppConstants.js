@@ -10,6 +10,10 @@ export const SHADES = {
   'AZURE-RADIANCE': 'azure-radiance',
   'EAST-SIDE': 'east-side'
 };
+export const DEVICE_STATE = {
+  ON: 'on',
+  OFF: 'off'
+};
 export const DEVICE_IMG_BSEE = `${process.env.PUBLIC_URL}/assets/images`;
 export const DEVICES = [
   {

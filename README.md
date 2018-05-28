@@ -1,5 +1,7 @@
 # code-samples
 
+> There is always room for improvement
+
 ## How to start
 
 * clone or download the project
@@ -14,8 +16,16 @@ i tried copy deisgn as much as posible and found few limitations with style-guid
 * Sidebar gradient is not generated properly
 * why first item is faded in sidebar ? if it is on scroll behaviour then how the scrollbar should look like
 
-## Funcationalties you can test
+## Features you can test
+
 * change active item in sidebar
 * change Active Shade
 * change Mode
 * change intensity
+* change device state
+
+## Features Missing
+
+* Add Device
+* Load Active Device Setting
+* Update Device Settings

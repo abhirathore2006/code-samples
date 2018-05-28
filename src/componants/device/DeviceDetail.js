@@ -1,10 +1,13 @@
 import React from 'react';
 import Knob from 'react-canvas-knob';
-import { MODES, SHADES } from '../../constants/AppConstants';
+import { MODES, SHADES, DEVICE_STATE } from '../../constants/AppConstants';
 
 export class DeviceDetail extends React.Component {
   getModeClass = mode => {
     return mode === this.props.mode ? 'mode active' : 'mode';
+  };
+  getModeIconClass = mode => {
+    return mode === this.props.mode ? 'tick-white icon' : 'tick-white-light icon';
   };
   getShadeClass = shade => {
     const baseClass = `shade  bg-${shade}`;
@@ -17,6 +20,10 @@ export class DeviceDetail extends React.Component {
       onClick: this.props.updateShade.bind(this, shade)
     };
   };
+  toggleState = () => {
+    let newDevieState = this.props.deviceState === DEVICE_STATE.ON ? DEVICE_STATE.OFF : DEVICE_STATE.ON;
+    this.props.toggleDeviceState(newDevieState);
+  };
   render() {
     return (
       <div className="main">
@@ -25,7 +32,10 @@ export class DeviceDetail extends React.Component {
           <i className="plus-dark add-device" />
         </div>
         <div className="device-detail">
-          <div className="switch right-floated" />
+          <div
+            className={`switch right-floated ${this.props.deviceState === DEVICE_STATE.ON ? 'active' : ''}`}
+            onClick={this.toggleState}
+          />
           Bed Lamp
         </div>
         <div className="settings">
@@ -61,19 +71,19 @@ export class DeviceDetail extends React.Component {
               <i className="morning-white icon" />
               <div className="title">Morning</div>
               <div className="intensity">50%</div>
-              <i className="tick-white icon" />
+              <i className={this.getModeIconClass(MODES.MORNING)} />
             </div>
             <div className={this.getModeClass(MODES.DAY)} onClick={this.props.updateMode.bind(this, MODES.DAY)}>
               <i className="day-dark icon" />
               <div className="title">Day</div>
               <div className="intensity">30%</div>
-              <i className="tick-white-light icon" />
+              <i className={this.getModeIconClass(MODES.DAY)} />
             </div>
             <div className={this.getModeClass(MODES.NIGHT)} onClick={this.props.updateMode.bind(this, MODES.NIGHT)}>
               <i className="night-dark icon" />
               <div className="title">Night</div>
               <div className="intensity">100%</div>
-              <i className="tick-white-light icon" />
+              <i className={this.getModeIconClass(MODES.NIGHT)} />
             </div>
           </div>
         </div>

@@ -1,13 +1,19 @@
 import React from 'react';
 import { mediaQuery } from 'react-mediaquery-props';
-import { MODES, SHADES, DEVICES } from '../constants/AppConstants';
+import { MODES, SHADES, DEVICES, DEVICE_STATE } from '../constants/AppConstants';
 import { DeviceCard, DeviceDetail } from '../componants/device';
 import './app.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { active: 1, intensity: 40, mode: MODES.MORNING, shade: SHADES['RADICAL-RED'] };
+    this.state = {
+      active: 1,
+      intensity: 40,
+      mode: MODES.MORNING,
+      shade: SHADES['RADICAL-RED'],
+      deviceState: DEVICE_STATE.ON
+    };
   }
 
   updateState = newState => this.setState(newState);
@@ -22,6 +28,7 @@ class App extends React.Component {
 
   updateIntensity = intensity => this.updateState({ intensity });
 
+  toggleDeviceState = deviceState => this.updateState({ deviceState });
   render() {
     let { mode, shade, intensity } = this.state;
     return (
@@ -47,9 +54,11 @@ class App extends React.Component {
             updateIntensity={this.updateIntensity}
             updateMode={this.updateMode}
             updateShade={this.updateShade}
+            toggleDeviceState={this.toggleDeviceState}
             mode={mode}
             shade={shade}
             intensity={intensity}
+            deviceState={this.state.deviceState}
           />
         </div>
       </div>
